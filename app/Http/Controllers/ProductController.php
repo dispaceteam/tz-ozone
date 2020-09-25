@@ -46,6 +46,7 @@ class ProductController extends Controller
     {
         $products = $request->getProductsAsEntity();
         $task_id = $ozoneSeller->ProductsImport(json_decode(json_encode($products), true));
+        Product::addAfterSend($products, $task_id);
         return response()->json([
             "result" => [
                "task_id" => $task_id
