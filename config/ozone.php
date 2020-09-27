@@ -10,7 +10,7 @@ return [
         'status' => [
             'failed' => ['failed_moderation', 'failed_validation', 'failed'],
             'in_progress' => ['sent', 'processing', 'moderating'],
-            'success' => ['processed']
+            'success' => ['processed', 'imported']
         ]
     ]
 ];
