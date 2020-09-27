@@ -26,4 +26,8 @@ class Product extends Model
             $product->save();
         }
     }
+
+    public function scopeInProgress($query){
+        return $query->whereIn('status', config('ozone.products.status.in_progress'));
+    }
 }
