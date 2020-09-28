@@ -1,0 +1,203 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Ozone Test API",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/products/store": {
+            "post": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Отправить новые продукты в Ozone",
+                "operationId": "App\\Http\\Controllers\\ProductController::store",
+                "requestBody": {
+                    "description": "Json с продуктами",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ProductEntity"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Успешно выполнено"
+                    },
+                    "400": {
+                        "description": "Ошибка в запросе"
+                    },
+                    "422": {
+                        "description": "Ошибка в теле запроса"
+                    },
+                    "500": {
+                        "description": "Ошибка ответа Ozone"
+                    }
+                }
+            }
+        },
+        "/api/product/info/{offer_id}": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Получение информации о продукте по offer_id",
+                "operationId": "App\\Http\\Controllers\\ProductController::info",
+                "parameters": [
+                    {
+                        "name": "offer_id",
+                        "in": "path",
+                        "description": "ID товара в системе продавца",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Успешно выполнено"
+                    },
+                    "400": {
+                        "description": "Ошибка в запросе"
+                    },
+                    "422": {
+                        "description": "Ошибка в теле запроса"
+                    },
+                    "500": {
+                        "description": "Ошибка ответа Ozone"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "ProductEntity": {
+                "required": [
+                    "name",
+                    "description",
+                    "category_id",
+                    "offer_id",
+                    "price",
+                    "vat",
+                    "images",
+                    "height",
+                    "depth",
+                    "width",
+                    "dimension_unit",
+                    "weight",
+                    "weight_unit"
+                ],
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "example": "Samsung Galaxy S9"
+                    },
+                    "barcode": {
+                        "type": "string",
+                        "example": "8801643566784"
+                    },
+                    "description": {
+                        "type": "string",
+                        "example": "Red Samsung Galaxy S9 with 512GB"
+                    },
+                    "category_id": {
+                        "type": "integer",
+                        "example": "17030819"
+                    },
+                    "offer_id": {
+                        "type": "string",
+                        "example": "REDSGS9-512"
+                    },
+                    "price": {
+                        "type": "string",
+                        "example": "79990"
+                    },
+                    "old_price": {
+                        "type": "string",
+                        "example": "89990"
+                    },
+                    "premium_price": {
+                        "type": "string",
+                        "example": "75555"
+                    },
+                    "vat": {
+                        "type": "string",
+                        "example": "0"
+                    },
+                    "vendor": {
+                        "type": "string",
+                        "example": "Samsung"
+                    },
+                    "vendor_code": {
+                        "type": "string",
+                        "example": "SM-G960UZPAXAA"
+                    },
+                    "height": {
+                        "type": "integer",
+                        "example": 77
+                    },
+                    "depth": {
+                        "type": "integer",
+                        "example": 11
+                    },
+                    "width": {
+                        "type": "integer",
+                        "example": 120
+                    },
+                    "dimension_unit": {
+                        "type": "string",
+                        "example": "mm"
+                    },
+                    "weight": {
+                        "type": "integer",
+                        "example": 100
+                    },
+                    "weight_unit": {
+                        "type": "string",
+                        "example": "g"
+                    },
+                    "attributes": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "id": {
+                                    "type": "integer"
+                                },
+                                "name": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "images": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "file_name": {
+                                    "type": "string"
+                                },
+                                "default": {
+                                    "type": "boolean"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "ProductEntity"
+                }
+            }
+        }
+    },
+    "security": [
+        []
+    ]
+}
