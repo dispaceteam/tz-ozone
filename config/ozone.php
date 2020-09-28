@@ -11,6 +11,7 @@ return [
             'failed' => ['failed_moderation', 'failed_validation', 'failed'],
             'in_progress' => ['sent', 'processing', 'moderating', 'pending'],
             'success' => ['processed', 'imported']
-        ]
+        ],
+        'check_cron' => env('OZONE_PRODUCTS_CHECK_CRON', '* * * * *')
     ]
 ];
