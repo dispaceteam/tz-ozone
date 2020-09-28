@@ -55,4 +55,33 @@ class OzoneSeller
 
         }
     }
+
+    /**
+     * @param $products
+     * @return array
+     */
+    public function ProductsImportInfo($taskId)
+    {
+        $svcProduct = new ProductService($this->config, $this->adapter);
+        try {
+            $result = $svcProduct->importInfo($taskId);
+            if (isset($result['items'])) {
+                return [
+                    'success' => true,
+                    'items' => $result['items']
+                ];
+            }else{
+                return [
+                    'success' => false,
+                    'exception' => new \Exception('В результате нет продуктов')
+                ];
+            }
+        } catch (OzonSellerException $e) {
+            return [
+                'success' => false,
+                'exception' => $e
+            ];
+
+        }
+    }
 }
