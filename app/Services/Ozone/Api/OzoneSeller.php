@@ -84,4 +84,33 @@ class OzoneSeller
 
         }
     }
+
+    /**
+     * @param $offerId
+     * @return array
+     */
+    public function ProductsInfoByOfferId($offerId)
+    {
+        $svcProduct = new ProductService($this->config, $this->adapter);
+        try {
+            $result = $svcProduct->infoBy(['offer_id' => $offerId]);
+            if (is_array($result)) {
+                return $result;
+            }else{
+                throw new HttpResponseException(
+                    new JsonResponse([
+                        "message" => 'Ошибочный ответ от сервера'
+                    ], 500)
+                );
+            }
+        } catch (OzonSellerException $e) {
+            throw new HttpResponseException(
+                new JsonResponse([
+                    "message" => $e->getMessage(),
+                    "errors" => $e->getData()
+                ], 422)
+            );
+
+        }
+    }
 }

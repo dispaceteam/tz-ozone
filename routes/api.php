@@ -20,3 +20,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('/products/store', [ProductController::class, 'store'])->name('products.store');
+
+Route::get('/product/info/{offer_id}', [ProductController::class, 'info'])->where('name', '[A-Za-z0-9_ -]+')->name('product.info');
