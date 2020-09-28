@@ -9,7 +9,7 @@ return [
     'products' => [
         'status' => [
             'failed' => ['failed_moderation', 'failed_validation', 'failed'],
-            'in_progress' => ['sent', 'processing', 'moderating'],
+            'in_progress' => ['sent', 'processing', 'moderating', 'pending'],
             'success' => ['processed', 'imported']
         ]
     ]
