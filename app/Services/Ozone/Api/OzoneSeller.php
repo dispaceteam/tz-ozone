@@ -57,7 +57,7 @@ class OzoneSeller
     }
 
     /**
-     * @param $products
+     * @param $taskId
      * @return array
      */
     public function ProductsImportInfo($taskId)
