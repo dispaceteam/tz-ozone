@@ -44,6 +44,7 @@ class OneProductImportTaskCheck implements ShouldQueue
                     $product = Product::where('offer_id', $item['offer_id'])->first();
                     if($product){
                         $product->status = $item['status'];
+                        $product->ozone_id = $item['product_id'];
                         $product->save();
                     }
                 }
