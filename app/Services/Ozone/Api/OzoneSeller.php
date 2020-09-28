@@ -3,12 +3,12 @@
 
 namespace App\Services\Ozone\Api;
 
+use Gam6itko\OzonSeller\Exception\OzonSellerException;
 use Gam6itko\OzonSeller\Service\V1\ProductService;
 use GuzzleHttp\Client as GuzzleClient;
 use Http\Adapter\Guzzle6\Client as GuzzleAdapter;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\JsonResponse;
-use \Gam6itko\OzonSeller\Exception\BadRequestException;
 
 class OzoneSeller
 {
@@ -45,7 +45,7 @@ class OzoneSeller
                 );
             }
             return $result['task_id'];
-        } catch (BadRequestException $e) {
+        } catch (OzonSellerException $e) {
             throw new HttpResponseException(
                 new JsonResponse([
                     "message" => $e->getMessage(),
